@@ -10,3 +10,11 @@ What this code does:
 - Plots the chart with highlited periods which fall into the "current state" category.
 - Calculates the probabilities of the returns within 1, 2 standard deviations above and below for the next 3, 7 and 15 days
 - Plots heatmap chart
+
+Improvements:
+- Create SQLite3 db.
+- Populate it with ohlc, volume and some other data for all tradable pairs from binance exchange.
+
+Plan:
+- Conduct the research of cyclical logic on altcoins within shorter timeperiods then 4 years.
+- Calculate the probabilities of returns based on the "states of the prices" relatively to SMAs.
