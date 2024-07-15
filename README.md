@@ -1,20 +1,43 @@
 # sma_interecation
-Assuming that a cryptocurrencies market moves through accumulation and distrubution cycles in a four years cycles, the aim of this project is to quantify the current position of the price relatively to the positions in the prcious cycles.
 
-What this code does:
-- Requests BTCUSD data from Bitstamp exchange and saves it to csv file
-- Calculates moving averages from with length from 10 to 740, with the step of 10.
-- Scales the values of SMAs with StandardScaler.
-- Measures the state of the price relatively to the moving avareges by finding the high and low values' borders for user-defined period.
-- Compares the "current state" with the historical values where the price was in the same bounds within some degree of certainity, which is alos user defined.
-- Plots the chart with highlited periods which fall into the "current state" category.
-- Calculates the probabilities of the returns within 1, 2 standard deviations above and below for the next 3, 7 and 15 days
-- Plots heatmap chart
+**The purposes of this project are:**
 
-Improvements:
-- Create SQLite3 db.
-- Populate it with ohlc, volume and some other data for all tradable pairs from binance exchange.
+**1. Show techniques and skills of handling large datasets of financial data.**
+
+**2. Develop and test trading idea build on SMA intersection.**
+
+
+_Steps of work with data:_
+- Create SQLite3 DB which consists of tables (create_db.py):
+  currencies: id, pair, base_asset, quote_asset, exchange
+  pairs_price: 
+
+Dowloading data
+- Request all tradeable pairs from binance.com exhange with "USDT" quoteAsset and add them into currencies table in db. Deletes delisted pairs and all data connected to the pair (add_pairs.py).
+- Request data for pairs from db and add price and volume data into pairs_pirce table. (fill_prices.py)
+
+Prepearing the data:
+- Read the data from db's currencies and pairs-price tables into a multiindex dataframe.
+- Check for missing dates values in dataframe for each symbol.
+- Replace the missing valeus with previoues one if the amount of missing data is less then 1% of tickers' lenght.
+- Check of NaN's values in the parameter space.
+- Group the pairs into bins of 1 year to identify the length of history to work with and plot the results.
+- Filter the dataframe removing pairs with less then 1 year of history.
+- Calculate correlation between numerical columns in the dataset and plot heatmap.
+- Apply Shapiro-Wilk and Anderson-Darling tests to identify if the distribution of values in columns are normal.
+- Plot a few random pair's and column distibuition to confirm the results of tests.
+- Identify outliers, in the colume data columns, using DBSCAN and Box-Cox techniques and replace them with the average of the previous 30 days.
+- Create simple moving averages in range from 10 to 370 with step of 10 for each pair in the dataset.
+- Create columns with additional volume indicators.
+- Normalize SMAs and volume indicaotrs' values with StandatrdScaler.
+- identify bounds of minimum and maximum SMA's and volume indicators' values in a user-defined range of time for a specific symbol.
+- Compare this bounds to other symbols in the dataframe and identify similarities.
 
 Plan:
-- Conduct the research of cyclical logic on altcoins within shorter timeperiods then 4 years.
+- Plot symbols and periods from history where symbols had been inside the bounds measured for user-defined symbol.
+- Analyze data to improve the intersection logic.
 - Calculate the probabilities of returns based on the "states of the prices" relatively to SMAs.
+
+_Trading idea:_
+Assuming that a cryptocurrencies market moves through accumulation and distrubution cycles in a four years cycles, the aim of this project is to quantify the current position of the price relatively to the positions in the previous cycles.
+
