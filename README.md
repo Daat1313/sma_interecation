@@ -16,7 +16,7 @@ Dowloading data
 - Request all tradeable pairs from binance.com exhange with "USDT" quoteAsset and add them into currencies table in db. Deletes delisted pairs and all data connected to the pair (add_pairs.py).
 - Request data for pairs from db and add price and volume data into pairs_pirce table. (fill_prices.py)
 
-Prepearing the data:
+Prepearing and processing the data (Modified SMA.ipynb):
 - Read the data from db's currencies and pairs-price tables into a multiindex dataframe.
 - Check for missing dates values in dataframe for each symbol.
 - Replace the missing valeus with previoues one if the amount of missing data is less then 1% of tickers' lenght.
@@ -47,8 +47,8 @@ Example from BTCUSD, comparing june 2024 data it's history. It shows that with 9
 
 Having some amount of datapoints which represent similarities we can calculate the propable returns in periods of 3, 7, 15 days.
 To avoid calculateing the specific amount of % gains considering capitalization and maturing of an asset we can approach calculating probabilities of return from perspective of achieving standard deviations.
-The heatmap below shows probabilities of getting 1 or 2 std returns in mentiond above periods.
+The heatmap below shows probabilities of getting 1 or 2 std positiv or negative returns in mentioned above periods.
 
 ![image](https://github.com/user-attachments/assets/520af7f9-ea9c-4f49-b1cc-c844dea4d8dd)
 
-
+The idea is to adding more data would give better generalization and increased stability of estimates.
