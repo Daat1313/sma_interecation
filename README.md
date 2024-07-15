@@ -40,4 +40,7 @@ Plan:
 
 _Trading idea:_
 Assuming that a cryptocurrencies market moves through accumulation and distrubution cycles in a four years cycles, the aim of this project is to quantify the current position of the price relatively to the positions in the previous cycles.
+Example from BTCUSD, comparing june 2024 data it's history. It shows that with 90% of similarity this period is close to march and july 2017.
+![image](https://github.com/user-attachments/assets/6c6cbfe9-fa0b-4756-af4e-aff13e1482fb)
+
 
