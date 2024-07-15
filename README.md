@@ -41,6 +41,14 @@ Plan:
 _Trading idea:_
 Assuming that a cryptocurrencies market moves through accumulation and distrubution cycles in a four years cycles, the aim of this project is to quantify the current position of the price relatively to the positions in the previous cycles.
 Example from BTCUSD, comparing june 2024 data it's history. It shows that with 90% of similarity this period is close to march and july 2017.
+
 ![image](https://github.com/user-attachments/assets/6c6cbfe9-fa0b-4756-af4e-aff13e1482fb)
+
+
+Having some amount of datapoints which represent similarities we can calculate the propable returns in periods of 3, 7, 15 days.
+To avoid calculateing the specific amount of % gains considering capitalization and maturing of an asset we can approach calculating probabilities of return from perspective of achieving standard deviations.
+The heatmap below shows probabilities of getting 1 or 2 std returns in mentiond above periods.
+
+![image](https://github.com/user-attachments/assets/520af7f9-ea9c-4f49-b1cc-c844dea4d8dd)
 
 
